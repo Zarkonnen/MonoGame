@@ -133,6 +133,28 @@ namespace Microsoft.Xna.Framework
                         Mouse.ScrollY += ev.Wheel.Y * wheelDelta;
                         Mouse.ScrollX += ev.Wheel.X * wheelDelta;
                         break;
+                    case Sdl.EventType.MouseButtonDown:
+                        _view.OnMouseButtonDown(new MouseButtonEventArgs(
+                            ButtonState.Pressed,
+                            ev.Button.Button == 1,
+                            ev.Button.Button == 2,
+                            ev.Button.Button == 3,
+                            ev.Button.Button == 4,
+                            ev.Button.Button == 5,
+                            ev.Button.X,
+                            ev.Button.Y));
+                        break;
+                    case Sdl.EventType.MouseButtonup:
+                        _view.OnMouseButtonUp(new MouseButtonEventArgs(
+                            ButtonState.Released,
+                            ev.Button.Button == 1,
+                            ev.Button.Button == 2,
+                            ev.Button.Button == 3,
+                            ev.Button.Button == 4,
+                            ev.Button.Button == 5,
+                            ev.Button.X,
+                            ev.Button.Y));
+                        break;
                     case Sdl.EventType.KeyDown:
                     {
                         var key = KeyboardUtil.ToXna(ev.Key.Keysym.Sym);

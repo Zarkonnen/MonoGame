@@ -155,6 +155,18 @@ namespace Microsoft.Xna.Framework
 
 #endif
 
+#if DESKTOPGL
+		/// <summary>
+		/// Buffered mouse MouseButtonDown event.
+		/// </summary>
+		public event EventHandler<MouseButtonEventArgs> MouseButtonDown;
+
+		/// <summary>
+		/// Buffered mouse MouseButtonUp event.
+		/// </summary>
+		public event EventHandler<MouseButtonEventArgs> MouseButtonUp;
+#endif
+
         /// <summary>
         /// This event is raised when user drops a file into the game window
         /// </summary>
@@ -250,6 +262,16 @@ namespace Microsoft.Xna.Framework
 	    }
 #endif
 
+#if DESKTOPGL
+        internal void OnMouseButtonDown(MouseButtonEventArgs e)
+	    {
+            EventHelpers.Raise(this, MouseButtonDown, e);
+	    }
+        internal void OnMouseButtonUp(MouseButtonEventArgs e)
+	    {
+            EventHelpers.Raise(this, MouseButtonUp, e);
+	    }
+#endif
         internal void OnFileDrop(FileDropEventArgs e)
         {
             EventHelpers.Raise(this, FileDrop, e);

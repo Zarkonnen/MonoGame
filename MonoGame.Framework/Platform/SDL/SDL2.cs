@@ -117,6 +117,8 @@ internal static class Sdl
         [FieldOffset(0)]
         public Mouse.MotionEvent Motion;
         [FieldOffset(0)]
+        public Mouse.ButtonEvent Button;
+        [FieldOffset(0)]
         public Keyboard.TextEditingEvent Edit;
         [FieldOffset(0)]
         public Keyboard.TextInputEvent Text;
@@ -634,6 +636,21 @@ internal static class Sdl
             public int Y;
             public int Xrel;
             public int Yrel;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct ButtonEvent
+        {
+            public EventType Type;
+            public uint Timestamp;
+            public uint WindowID;
+            public uint Which;
+            public byte Button;
+            public byte State;
+            public byte Clicks;
+            private byte _padding1;
+            public int X;
+            public int Y;
         }
 
         [StructLayout(LayoutKind.Sequential)]
